@@ -38,9 +38,9 @@ public class Snake : MonoBehaviour
     {        
         if (context.performed)
         {
-            tempH = (int)context.ReadValue<Vector2>().x;
-            tempV = (int)context.ReadValue<Vector2>().y;
-            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1)
+            tempH = (int)Mathf.Ceil(context.ReadValue<Vector2>().x); 
+            tempV = (int)Mathf.Ceil(context.ReadValue<Vector2>().y);
+            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1 || tempH == 1 && horizontal == -1 || tempV == -1 && vertical == 1)
                 return;
             
             horizontal = tempH;
