@@ -9,13 +9,16 @@ public class Snake : MonoBehaviour
 
     private int horizontal;
     private int vertical;
-    private List<Transform> _segments;
+    private int tempH;
+    private int tempV;
+    private List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
+    public int initialSize = 4;
+
 
     private void Start()
     {
-        _segments = new List<Transform>();
-        _segments.Add(this.transform);
+        ResetState();
     }
 
     private void FixedUpdate()
@@ -35,10 +38,13 @@ public class Snake : MonoBehaviour
     {        
         if (context.performed)
         {
-            horizontal = (int)context.ReadValue<Vector2>().x;
-            vertical = (int)context.ReadValue<Vector2>().y;
-            print("horizontal: " + horizontal);
-            print("vertical: " + vertical);
+            tempH = (int)context.ReadValue<Vector2>().x;
+            tempV = (int)context.ReadValue<Vector2>().y;
+            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1)
+                return;
+            
+            horizontal = tempH;
+            vertical = tempV;
         }
         
     }
@@ -59,6 +65,11 @@ public class Snake : MonoBehaviour
         }
         _segments.Clear();
         _segments.Add(this.transform);
+
+        for (int i = 1; i < this.initialSize; i++)
+        {
+            _segments.Add(Instantiate(this.segmentPrefab));
+        }
 
         this.transform.position = Vector3.zero;
         // SCORE
