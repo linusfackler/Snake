@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "eb7b34fa-bc72-48c4-a860-bb7e96a0316f",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -17,7 +17,7 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "Gamepad",
                     "id": "cd68e6f2-306a-4ebb-a8e2-51f21b4fc55a",
                     "path": "2DVector",
                     "interactions": "",
@@ -133,12 +133,24 @@
         {
             "name": "Gamepad",
             "bindingGroup": "Gamepad",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         },
         {
             "name": "Keyboard",
             "bindingGroup": "Keyboard",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }

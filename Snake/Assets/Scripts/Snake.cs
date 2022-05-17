@@ -6,8 +6,8 @@ public class Snake : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
 
-    private float horizontal;
-    private float vertical;
+    private int horizontal;
+    private int vertical;
 
 
     private void FixedUpdate()
@@ -16,8 +16,10 @@ public class Snake : MonoBehaviour
     }
 
     public void Move(InputAction.CallbackContext context)
-    {
-        horizontal = context.ReadValue<Vector2>().x;
-        vertical = context.ReadValue<Vector2>().y;
+    {        
+        horizontal = (int)context.ReadValue<Vector2>().x;
+        vertical = (int)context.ReadValue<Vector2>().y;
+        print("horizontal: " + horizontal);
+        print("vertical: " + vertical);
     }
 }
