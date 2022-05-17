@@ -10,7 +10,7 @@ public class Snake : MonoBehaviour
     private float vertical;
 
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
