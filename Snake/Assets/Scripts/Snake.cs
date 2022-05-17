@@ -84,7 +84,6 @@ public class Snake : MonoBehaviour
         
         else if (other.tag == "Obstacle")
         {
-            print("hello");
             ResetState();
         }
     }
