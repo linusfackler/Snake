@@ -38,9 +38,11 @@ public class Snake : MonoBehaviour
     {        
         if (context.performed)
         {
-            tempH = (int)Mathf.Ceil(context.ReadValue<Vector2>().x); 
-            tempV = (int)Mathf.Ceil(context.ReadValue<Vector2>().y);
-            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1 || tempH == 1 && horizontal == -1 || tempV == -1 && vertical == 1)
+            //print(context.ReadValue<Vector2>().x); 
+            //print(context.ReadValue<Vector2>().y);
+            tempH = (int)context.ReadValue<Vector2>().x; 
+            tempV = (int)context.ReadValue<Vector2>().y;
+            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1 || tempH == 1 && horizontal == -1 || tempV == -1 && vertical == 1 || tempV == 0 && tempH == 0)
                 return;
             
             horizontal = tempH;
@@ -81,6 +83,9 @@ public class Snake : MonoBehaviour
             Grow();
         
         else if (other.tag == "Obstacle")
+        {
+            print("hello");
             ResetState();
+        }
     }
 }
