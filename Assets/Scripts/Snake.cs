@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Snake : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Snake : MonoBehaviour
     private List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
+    public GameObject scoreText;
+    private int score = 0;
+    private string scoreString;
 
 
     private void Start()
@@ -26,6 +30,7 @@ public class Snake : MonoBehaviour
         for (int i = _segments.Count - 1; i > 0; i--)
         {
             _segments[i].position = _segments[i - 1].position;
+            _segments[i].rotation = _segments[i - 1].rotation;
         }
         this.transform.position = new Vector3(
             Mathf.Round(this.transform.position.x) + horizontal,
@@ -38,15 +43,22 @@ public class Snake : MonoBehaviour
     {        
         if (context.performed)
         {
-            //print(context.ReadValue<Vector2>().x); 
-            //print(context.ReadValue<Vector2>().y);
             tempH = (int)context.ReadValue<Vector2>().x; 
             tempV = (int)context.ReadValue<Vector2>().y;
-            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1 || tempH == 1 && horizontal == -1 || tempV == -1 && vertical == 1 || tempV == 0 && tempH == 0)
+            if (tempH == 1 && horizontal == -1 || tempV == 1 && vertical == -1 || tempH == -1 && horizontal == 1 || tempV == -1 && vertical == 1 || tempV == 0 && tempH == 0)
                 return;
             
             horizontal = tempH;
             vertical = tempV;
+
+            if (horizontal > 0f || horizontal < 0f)
+            {
+                this.transform.eulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else
+            {
+                this.transform.eulerAngles = (new Vector3(0f, 0f, 0f));
+            }
         }
         
     }
@@ -57,6 +69,10 @@ public class Snake : MonoBehaviour
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
+        score += 10;
+        // scoreString = score.ToString();
+        // scoreString.Format("{0:00000}", 15);
+        scoreText.GetComponent<TMP_Text>().text = score.ToString("000000");
     }
 
     private void ResetState()
@@ -74,7 +90,7 @@ public class Snake : MonoBehaviour
         }
 
         this.transform.position = Vector3.zero;
-        // SCORE
+        score = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
