@@ -663,6 +663,7 @@ MonoBehaviour:
   segmentPrefab: {fileID: 5437302301431347115, guid: 2f4b0c0e6dcc7d34ea7100abb1e2d900, type: 3}
   initialSize: 5
   scoreText: {fileID: 2049793904}
+  highscoreText: {fileID: 1993921570}
 --- !u!114 &905165682
 MonoBehaviour:
   m_ObjectHideFlags: 0

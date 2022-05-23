@@ -89,6 +89,13 @@ public class Snake : MonoBehaviour
         }
 
         this.transform.position = Vector3.zero;
+
+        if (score > PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highscoreText.GetComponent<TMP_Text>().text = score.ToString("000000");
+        }
+        scoreText.GetComponent<TMP_Text>().text = "000000";
         score = 0;
     }
 
