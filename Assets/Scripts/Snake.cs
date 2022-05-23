@@ -15,9 +15,10 @@ public class Snake : MonoBehaviour
     private List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
+
     public GameObject scoreText;
     private int score = 0;
-    private string scoreString;
+    public GameObject highscoreText;
 
 
     private void Start()
@@ -70,8 +71,6 @@ public class Snake : MonoBehaviour
 
         _segments.Add(segment);
         score += 10;
-        // scoreString = score.ToString();
-        // scoreString.Format("{0:00000}", 15);
         scoreText.GetComponent<TMP_Text>().text = score.ToString("000000");
     }
 
